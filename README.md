@@ -8,7 +8,14 @@ Aplicación web para la gestión y consulta de reservas del salón de eventos de
 * Brindar una interfaz sencilla para registrar y consultar eventos.
 * Garantizar la persistencia y organización de los datos.
 
-## 👥 Integrantes del proyecto
+## 👥 Integrantes del proyecto version: 2026 (Actual)
+* Ayelen Guzman – [@ielen](https://github.com/ielen)
+* Maira Ayelen Quiroga – [@maiQuiroga](https://github.com/maiQuiroga)
+* Gabriela Soledad – [@Sol-Gaby](https://github.com/Sol-Gaby)
+* Mercedes Vega – [@MercedesVega08](https://github.com/MercedesVega08)
+* Daniel Ignacio Agüero – [@AgueroDaniel](https://github.com/AgueroDaniel)
+
+## 👥 Integrantes del proyecto version: 2025 (Primera version)
 
 * Damian Dalio – [@ddalio](https://github.com/ddalio)
 * Jhonatan Calle – [@Jhonatan-calle](https://github.com/Jhonatan-calle)
