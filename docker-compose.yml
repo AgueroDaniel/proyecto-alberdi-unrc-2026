@@ -1,4 +1,21 @@
 services:
+  db:
+    image: mariadb:10.11
+    container_name: alberdi_mariadb
+    restart: always
+    environment:
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
+      MARIADB_AUTO_UPGRADE: "1" # Obliga a MariaDB a acomodar los archivos al sistema local
+
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 55s
+      retries: 5
+
   flask_app:
     build: .
     ports:

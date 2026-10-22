@@ -18,7 +18,7 @@ def create_app():
     app = Flask(__name__)
     
     # Configuración general
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///alberdi.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"{os.getenv('DB_URL')}"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.secret_key = os.getenv("SECRET_KEY")
     

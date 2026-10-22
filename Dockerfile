@@ -7,8 +7,11 @@ WORKDIR /app
 # Copiar dependencias
 COPY requirements.txt .
 
-# Instalar SQLite
-RUN apt-get update && apt-get install -y sqlite3 && rm -rf /var/lib/apt/lists/*
+# Instalar Mysql-community
+RUN apt-get update && apt-get install -y \
+	mariadb-server \
+	mariadb-client \
+	&& rm -rf /var/lib/apt/lists/*
 
 # Instalar dependencias
 RUN pip install --no-cache-dir -r requirements.txt
