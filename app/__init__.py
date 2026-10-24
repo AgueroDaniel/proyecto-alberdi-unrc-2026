@@ -17,8 +17,8 @@ mail = Mail()
 def create_app():
     app = Flask(__name__)
     
-    # Configuración general
-    app.config["SQLALCHEMY_DATABASE_URI"] = f"{os.getenv('DB_URL')}"
+    # 2. Armamos la URI inyectando los datos de forma correcta (apuntando al host 'db')
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://root:{ os.getenv('DB_PASSWORD')}@db:3306/{ os.getenv('DB_NAME')}"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.secret_key = os.getenv("SECRET_KEY")
     

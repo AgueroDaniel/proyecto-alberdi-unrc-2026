@@ -7,7 +7,7 @@ WORKDIR /app
 # Copiar dependencias
 COPY requirements.txt .
 
-# Instalar Mysql-community
+# Instalar Mariodb
 RUN apt-get update && apt-get install -y \
 	mariadb-server \
 	mariadb-client \
