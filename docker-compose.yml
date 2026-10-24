@@ -6,15 +6,17 @@ services:
     environment:
       MARIADB_DATABASE: ${DB_NAME}
       MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
-      MARIADB_AUTO_UPGRADE: "1" # Obliga a MariaDB a acomodar los archivos al sistema local
-
+      MARIADB_AUTO_UPGRADE: "1" 
     ports:
       - "3306:3306"
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
-      interval: 15s
-      timeout: 13s
-      retries: 5
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+    volumes:
+      - ./instance:/var/lib/mysql
 
   flask_app:
     build: .
@@ -30,3 +32,6 @@ services:
     command: ["flask", "run", "--host=0.0.0.0"]
     env_file:
       - .env
+    depends_on:
+      db:
+        condition: service_healthy

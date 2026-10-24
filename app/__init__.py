@@ -72,7 +72,7 @@ def create_app():
                 )
                 db.session.add(cuenta_admin)
 
-                admin = Administrador(nombre_usuario='admin')
+                admin = Administrador(nombre_usuario='admin1')
                 db.session.add(admin)
 
                 db.session.commit()
