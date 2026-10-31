@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .btn-rojo { background-color: #c90000; color: white; border: none; }
+    .btn-rojo:hover { background-color: #a90000; color: white; }
+    
+    /* Pestañas*/
+    .nav-pills-custom { background-color: #f3f4f6; border-radius: 8px; padding: 4px; display: inline-flex; }
+    .nav-pills-custom .nav-link { color: #555; border-radius: 6px; font-size: 14px; font-weight: 600; padding: 8px 16px; margin: 0; background-color: transparent; }
+    .nav-pills-custom .nav-link:hover { color: #171717; }
+    .nav-pills-custom .nav-link.active { background-color: white !important; color: #171717 !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1); font-weight: bold; }
+</style>
+
+<div class="container-fluid p-4">
+    <!-- titulo y los 3 botones-->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div>
+            <h1 class="fw-bold mb-1">Biblioteca</h1>
+            <p class="text-muted mb-0">Administra los libros del Club Alberdi.</p>
+        </div>
+        <div class="d-flex gap-2 mt-3 mt-md-0">
+            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#modalEditarLibro">
+                <i class="bi bi-pencil"></i> Modificar
+            </button>
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalEliminarLibro">
+                <i class="bi bi-trash"></i> Eliminar
+            </button>
+            <button type="button" class="btn btn-rojo" data-bs-toggle="modal" data-bs-target="#modalNuevoLibro">
+                <i class="bi bi-plus-lg"></i> Nuevo
+            </button>
+        </div>
+    </div>
+
+    <!-- Tarjetas de estadísticas -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h6 class="text-muted small fw-bold text-uppercase">Títulos registrados</h6>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <h2 class="fw-bold mb-0">{{ stats.total_titulos | default(0) }}</h2>
+                        <span class="text-muted small">ejemplares</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h6 class="text-muted small fw-bold text-uppercase">Copias disponibles</h6>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <h2 class="fw-bold mb-0">{{ stats.copias_disponibles | default(0) }}</h2>
+                        <span class="text-muted small">Listas para préstamo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- Sin sombreado y con fondo ligeramente rojo -->
+            <div class="card border-danger border-opacity-25 h-100" style="background-color: #fffafa;">
+                <div class="card-body">
+                    <h6 class="text-muted small fw-bold text-uppercase">Préstamos activos</h6>
+                    <div class="d-flex justify-content-between align-items-end">
+                        <h2 class="fw-bold text-danger mb-0">{{ stats.prestamos_activos | default(0) }}</h2>
+                        <span class="text-muted small">lectores</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="card shadow-sm border-0 p-3">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3">
+            <ul class="nav nav-pills nav-pills-custom" id="bibliotecaTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="catalogo-tab" data-bs-toggle="tab" data-bs-target="#catalogo" type="button" role="tab">Catálogo</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="prestamos-tab" data-bs-toggle="tab" data-bs-target="#prestamos" type="button" role="tab">Libros prestados</button>
+                </li>
+            </ul>
+            <!-- El botón inicia oculto con la clase d-none -->
+            <button type="button" class="btn btn-rojo mt-3 mt-md-0 d-none" id="btnNuevoPrestamo" data-bs-toggle="modal" data-bs-target="#modalPrestamo">
+                <i class="bi bi-plus-lg"></i> Nuevo préstamo
+            </button>
+        </div>
+
+        <div class="tab-content" id="bibliotecaTabsContent">
+            <div class="tab-pane fade show active" id="catalogo" role="tabpanel">
+                {% include "biblioteca_catalogo.html" %}
+            </div>
+            <div class="tab-pane fade" id="prestamos" role="tabpanel">
+                {% include "biblioteca_prestamos.html" %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "biblioteca_modal_libro.html" %}
+{% include "biblioteca_modal_prestamo.html" %}
+{% include "biblioteca_modal_editar.html" %}
+{% include "biblioteca_modal_eliminar.html" %}
+
+<!-- mostrar/ocultar el boton de Nuevo Prestamo -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var catalogoTab = document.getElementById('catalogo-tab');
+        var prestamosTab = document.getElementById('prestamos-tab');
+        var btnPrestamo = document.getElementById('btnNuevoPrestamo');
+
+        catalogoTab.addEventListener('shown.bs.tab', function () {
+            btnPrestamo.classList.add('d-none');
+        });
+        
+        prestamosTab.addEventListener('shown.bs.tab', function () {
+            btnPrestamo.classList.remove('d-none');
+        });
+    });
+</script>
+{% endblock %}

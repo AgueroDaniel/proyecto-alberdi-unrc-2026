@@ -1,0 +1,57 @@
+<div class="modal fade" id="modalNuevoLibro" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-bottom-0 pt-4 px-4">
+                <div>
+                    <h5 class="fw-bold mb-1">Dar de alta un libro</h5>
+                    <p class="text-muted small mb-0">Completa todos los datos bibliográficos para guardar el registro.</p>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <form action="#" method="POST" class="modal-body px-4 pb-4">
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold">Título *</label>
+                        <input type="text" required name="titulo" placeholder="Ej. Cien años de soledad" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold">Subtítulo</label>
+                        <input type="text" name="subtitulo" placeholder="Subtítulo de la obra" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold">Autor *</label>
+                        <input type="text" required name="autor" placeholder="Nombre completo" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold">Género *</label>
+                        <input type="text" required name="genero" placeholder="Ej. Novela" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold">Idioma *</label>
+                        <select required name="idioma" class="form-select">
+                            <option value="Español" selected>Español</option>
+                            <option value="Inglés">Inglés</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold">Cantidad de páginas *</label>
+                        <input type="number" required min="1" value="1" name="paginas" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold">ISBN *</label>
+                        <input type="text" required name="isbn" placeholder="978-00-0000-000-0" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold">Cantidad de copias disponibles *</label>
+                        <input type="number" required min="1" value="1" name="cantidad" class="form-control">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end gap-2 border-top pt-3">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <!-- Actualizado a .btn-rojo -->
+                    <button type="submit" class="btn btn-rojo">Dar de alta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

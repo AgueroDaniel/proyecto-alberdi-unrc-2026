@@ -1,0 +1,37 @@
+<div class="bg-white border-bottom p-3 d-flex justify-content-between align-items-center">
+    <p class="text-muted mb-0 small">Listado de ejemplares entregados a lectores.</p>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover mb-0 align-middle">
+        <thead class="table-light text-muted small text-uppercase">
+            <tr>
+                <th class="ps-4 py-3">Libro prestado</th>
+                <th class="py-3">Lector</th>
+                <th class="py-3">Fecha de entrega</th>
+                <th class="py-3">Devolución prevista</th>
+                <th class="pe-4 py-3 text-end">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prestamo in prestamos %}
+            <tr>
+                <td class="ps-4 py-3 fw-bold">{{ prestamo.libro.titulo }}</td>
+                <td class="py-3">{{ prestamo.lector }}</td>
+                <td class="py-3">{{ prestamo.fecha_inicio }}</td>
+                <td class="py-3">{{ prestamo.fecha_devolucion }}</td>
+                <td class="pe-4 py-3 text-end">
+                    <button class="btn btn-sm btn-outline-success" style="border-radius: 6px;">Registrar devolución</button>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="text-center py-5 text-muted">
+                    <i class="bi bi-journal-x fs-1 d-block mb-2"></i>
+                    No hay préstamos activos en este momento.
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
