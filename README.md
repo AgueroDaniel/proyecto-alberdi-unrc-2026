@@ -1,12 +1,13 @@
-# Reservas Club Alberdi
+# Gestor de recursos Club Alberdi
 
-Aplicación web para la gestión y consulta de reservas del salón de eventos del **Club Alberdi**, ubicado en la ciudad de Río Cuarto. Este proyecto fue desarrollado como parte de una actividad académica, con fines educativos y sin fines de lucro.
+Aplicación web para la gestión y consulta de reservas del salón de eventos y biblioteca del **Club Alberdi**, ubicado en la ciudad de Río Cuarto. Este proyecto fue desarrollado como parte de una actividad académica, con fines educativos y sin fines de lucro.
 
 ## ✨ Objetivos
 
 * Facilitar la administración de reservas del salón del club.
 * Brindar una interfaz sencilla para registrar y consultar eventos.
 * Garantizar la persistencia y organización de los datos.
+* Brindar fácil acceso a los datos de los libros alojados por el club.
 
 ## 👥 Integrantes del proyecto version: 2026 (Actual)
 * Ayelen Guzman – [@ielen](https://github.com/ielen)
