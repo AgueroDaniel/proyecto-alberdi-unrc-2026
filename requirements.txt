@@ -1,6 +1,8 @@
 flask==3.0.3
 flask-sqlalchemy==3.1.1
 pymysql==1.1.0
+#decidir una version
+python-dotenv
 cryptography>=41.0.7
 Werkzeug==3.0.0
 Flask-Migrate
