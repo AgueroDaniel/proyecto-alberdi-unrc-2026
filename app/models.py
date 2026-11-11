@@ -222,3 +222,26 @@ class AuditoriaPago(db.Model):
     def check_password(self, password):
         from werkzeug.security import check_password_hash
         return check_password_hash(self.password_hash, password)
+
+# ==============================
+# 9. PRESTAMO
+# ==============================
+class Prestamo(db.Model):
+    __tablename__ = 'prestamo'
+    id_prestamo = db.Column(db.Integer, primary_key=True)
+    fecha_prestamo = db.Column(db.Date, nullable=False)
+    fecha_devolucion = db.Column(db.Date, nullable=False) #Corroborar la parte de null
+    tiempo_prestamo = db.Column(db.Integer, nullable=False) #corroborar si no va Date
+    dni = db.Column(db.String(20), db.ForeignKey('cliente.dni'))
+    id_interno = db.Column(db.Integer, db.ForeignKey('libro.id_interno')) #corroborar con la tabla libro 
+    nombre_usuario = db.Column(db.String(20), db.ForeignKey('cuenta.nombre_usuario'))
+
+    #Relaciones entre las tablas, es para facilitar la navegación
+    deudor = db.relationship('Cleinte', backref='prestamos')
+    libro_prestado = db.relationship('Libro', backref='libros_prestados')
+    # como es una relación N a 1, no hace falta nueva tabla
+    # en compensación se registra esto para facilitar la navegación 
+    gestor_prestamo = db.relationship('Cuenta', backref='gestor')
+
+
+
