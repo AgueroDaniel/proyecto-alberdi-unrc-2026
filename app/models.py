@@ -200,6 +200,42 @@ class AuditoriaPago(db.Model):
     def __repr__(self):
         return f'<AuditoriaPago Pago {self.id_pago} - Usuario {self.nombre_usuario}>'
 
+
+# ==============================
+# 9. LIBRO
+# ==============================
+
+class Libro(db.Model):
+    __tablename__ = "libro"
+
+    #Restricciones para la tabla libro
+    __table_args__ = (
+        db.UniqueConstraint("isbn", name="uq_libro_isbn"), db.CheckConstraint("length(trim(titulo)) > 0", name="ck_libro_titulo"), db.CheckConstraint("length(trim(autor)) > 0", name="ck_libro_autor"), db.CheckConstraint("cantidad_paginas IS NULL OR cantidad_paginas > 0", name="ck_libro_paginas", ), db.CheckConstraint("cantidad_copias >= 0", name="ck_libro_copias"), {"mysql_engine": "InnoDB"},
+    )
+
+    id_libro = db.Column( db.Integer, primary_key=True, autoincrement=True)
+    isbn = db.Column(db.String(13), nullable=True)
+    titulo = db.Column(db.String(255), nullable=False)
+    subtitulo = db.Column(db.String(255), nullable=True)
+    autor = db.Column(db.String(255), nullable=False)
+    genero = db.Column(db.String(100), nullable=True)
+    idioma = db.Column(db.String(50), nullable=True)
+    cantidad_paginas = db.Column(db.Integer, nullable=True)
+    cantidad_copias = db.Column(db.Integer, nullable=False)
+    estado = db.Column(db.String(30), nullable=False, server_default="pendiente_integracion", ) # Queda pendiente para conectar con la tabla de prestamo
+
+# ==============================
+# 10. BIBLIOTECARIO
+# ==============================
+
+class Bibliotecario(db.Model):
+    __tablename__ = "bibliotecario"
+
+    nombre_usuario = db.Column( db.String(10), db.ForeignKey( "administrador.nombre_usuario", name="fk_bibliotecario_administrador", ondelete="RESTRICT",), primary_key=True,)
+    nombre = db.Column(db.String(20), nullable=False)
+
+#### ###
+
 # Agregar estos campos después de password_hash en la clase Cuenta
    # rol = db.Column(db.String(20), nullable=False, default='usuario')
     email_verificado = db.Column(db.Boolean, nullable=False, default=False)
