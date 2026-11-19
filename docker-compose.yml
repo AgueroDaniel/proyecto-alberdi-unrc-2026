@@ -14,7 +14,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
-      start_period: 60s
+      start_period: 240s
     volumes:
       - ./instance:/var/lib/mysql
 
@@ -28,10 +28,8 @@ services:
       - FLASK_ENV=development
       - FLASK_DEBUG=1
       - FLASK_APP=app:create_app
-      - DATABASE_URL=${DB_URL} # conectar al otro container
+      - DATABASE_URL= mysql+pymysql://root:${DB_PASSWORD}@db:3306/${DB_NAME} # conectar al otro container
     command: ["flask", "run", "--host=0.0.0.0"]
-    env_file:
-      - .env
     depends_on:
       db:
         condition: service_healthy
