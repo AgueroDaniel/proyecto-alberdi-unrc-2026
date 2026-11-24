@@ -16,10 +16,10 @@
         <tbody>
             {% for prestamo in prestamos %}
             <tr>
-                <td class="ps-4 py-3 fw-bold">{{ prestamo.libro.titulo }}</td>
-                <td class="py-3">{{ prestamo.lector }}</td>
-                <td class="py-3">{{ prestamo.fecha_inicio }}</td>
-                <td class="py-3">{{ prestamo.fecha_devolucion }}</td>
+                <td class="ps-4 py-3 fw-bold">{{ prestamo.libro_prestado.titulo }}</td>
+                <td class="py-3">{{ prestamo.deudor.nombre }} {{ prestamo.deudor.apellido }} ({{ prestamo.dni }})</td>
+                <td class="py-3">{{ prestamo.fecha_prestamo.strftime('%d/%m/%Y') if prestamo.fecha_prestamo else '-' }}</td>
+                <td class="py-3">{{ prestamo.fecha_devolucion.strftime('%d/%m/%Y') if prestamo.fecha_devolucion else 'Pendiente' }}</td>
                 <td class="pe-4 py-3 text-end">
                     <button class="btn btn-sm btn-outline-success" style="border-radius: 6px;">Registrar devolución</button>
                 </td>

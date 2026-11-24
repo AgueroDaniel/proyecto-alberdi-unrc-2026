@@ -15,9 +15,9 @@
                 <tr>
                     <td class="ps-3 fw-bold">{{ libro.titulo }}</td>
                     <td>{{ libro.autor }}</td>
-                    <td>{{ libro.genero }}</td>
-                    <td class="text-center">{{ libro.total_ejemplares }}</td>
-                    <td class="text-center">{{ libro.disponibles }}</td>
+                    <td>{{ libro.genero or '-'}}</td>
+                    <td class="text-center">{{ libro.cantidad_copias }}</td>
+                    <td class="text-center">{{ libro.disponibles | default(libro.cantidad_copias) }}</td>
                 </tr>
                 {% endfor %}
             {% else %}

@@ -17,8 +17,7 @@ mail = Mail()
 def create_app():
     app = Flask(__name__)
     
-    # Configuración general
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///alberdi.db"
+    app.config["SQLALCHEMY_DATABASE_URI"] =  os.environ.get('DATABASE_URL')
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.secret_key = os.getenv("SECRET_KEY")
     
@@ -72,7 +71,7 @@ def create_app():
                 )
                 db.session.add(cuenta_admin)
 
-                admin = Administrador(nombre_usuario='admin')
+                admin = Administrador(nombre_usuario='admin1')
                 db.session.add(admin)
 
                 db.session.commit()

@@ -34,21 +34,20 @@
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label small fw-bold">Cantidad de páginas *</label>
-                        <input type="number" required min="1" value="1" name="paginas" class="form-control">
+                        <label class="form-label small fw-bold">Cantidad de páginas </label>
+                        <input type="number" min="1" value="1" name="cantidad_paginas" class="form-control">
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label small fw-bold">ISBN *</label>
-                        <input type="text" required name="isbn" placeholder="978-00-0000-000-0" class="form-control">
+                        <label class="form-label small fw-bold">ISBN </label>
+                        <input type="text" maxlength="13" name="isbn" placeholder="Ej. 9789500700290" class="form-control">
                     </div>
                     <div class="col-md-6">
                         <label class="form-label small fw-bold">Cantidad de copias disponibles *</label>
-                        <input type="number" required min="1" value="1" name="cantidad" class="form-control">
+                        <input type="number" required min="0" value="1" name="cantidad_copias" class="form-control">
                     </div>
                 </div>
                 <div class="d-flex justify-content-end gap-2 border-top pt-3">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <!-- Actualizado a .btn-rojo -->
                     <button type="submit" class="btn btn-rojo">Dar de alta</button>
                 </div>
             </form>
